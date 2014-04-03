@@ -13,9 +13,14 @@ class DefaultController extends Controller
         return $this->render('Vault14Bundle:Default:index.html.twig', array('name' => NULL));
     }
     
+    private function getUser() {
+        return $this->get('security.context')->getToken()->getUser();
+    }
+
     private function getDocumentUploadForm() {
         $document = new Document();
         $document->name = 'untitled';
+        $document->setUser($this->getUser());
         $form = $this->createFormBuilder($document)
             ->add('file')
             ->add('upload', 'submit')

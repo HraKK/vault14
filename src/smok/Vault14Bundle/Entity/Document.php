@@ -99,18 +99,13 @@ class Document {
             return;
         }
 
-        // use the original file name here but you should
-        // sanitize it at least to avoid any security issues
-
-        // move takes the target directory and then the
-        // target filename to move to
+        $this->name = $this->getFile()->getClientOriginalName();
+        $this->path = sha1($this->name.microtime());
+        
         $this->getFile()->move(
             $this->getUploadRootDir(),
-            $this->getFile()->getClientOriginalName()
+            $this->path
         );
-
-        // set the path property to the filename where you've saved the file
-        $this->path = $this->getFile()->getClientOriginalName();
 
         // clean up the file property as you won't need it anymore
         $this->file = null;
