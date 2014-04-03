@@ -40,8 +40,9 @@ class DefaultController extends Controller
             'SELECT f '
                 . 'FROM Vault14Bundle:Folder f '
                 . 'LEFT JOIN f.parent_folder p '
+                . 'LEFT JOIN f.user u '
                 . 'WHERE p.id IS NULL '
-                . 'AND f.user_id = :user '
+                . 'AND u.id = :user '
             )
             ->setParameter('user', $this->getCurrentUser()->getId());
         
@@ -49,8 +50,9 @@ class DefaultController extends Controller
             'SELECT d '
                 . 'FROM Vault14Bundle:Document d '
                 . 'LEFT JOIN d.folder f '
+                . 'LEFT JOIN d.user u '
                 . 'WHERE f.id IS NULL '
-                . 'AND d.user_id = :user '    
+                . 'AND u.id = :user '
             )
             ->setParameter('user', $this->getCurrentUser()->getId());
                     
