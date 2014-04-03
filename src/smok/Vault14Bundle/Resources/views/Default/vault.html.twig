@@ -1,13 +1,21 @@
 {% extends 'Vault14Bundle:Default:base.html.twig' %}
 
 {% block body %}
-    <h1>You are inside!</h1>
+    <p class="big">Vault14</p>
     <!-- Responsive grid http://purecss.io/grids/ -->
     <div class="pure-g-r vault">
-        <div class="pure-u-2-5">
+        <div class="pure-u-1-5">
+            <button id="fileDrop">Upload file</button>
             {{ form(uploadform) }}
         </div>
-        <div class="pure-u-3-5">
+        <script>
+            $(document).ready(function{
+                $('#fileDrop').click(function(e){
+                    $('#form_file').click();
+                });
+            });
+        </script>
+        <div class="pure-u-4-5">
             <table class="pure-table pure-table-horizontal striped">
                 {% for folder in folders %}
                     <tr>
