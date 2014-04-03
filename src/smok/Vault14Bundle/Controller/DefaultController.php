@@ -37,18 +37,18 @@ class DefaultController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $folders_q = $em->createQuery(
-            'SELECT f'
-                . 'FROM Vault14Bundle:Folder f'
-                . 'WHERE f.parent_folder_id IS NULL'
-                . 'AND f.user_id = :user'
+            'SELECT f '
+                . 'FROM Vault14Bundle:Folder f '
+                . 'WHERE f.parent_folder_id IS NULL '
+                . 'AND f.user_id = :user '
             )
             ->setParameter('user', $this->getCurrentUser()->getId());
         
         $documents_q = $em->createQuery(
-            'SELECT d'
-                . 'FROM Vault14Bundle:Document d'
-                . 'WHERE d.folder_id IS NULL'
-                . 'AND d.user_id = :user'    
+            'SELECT d '
+                . 'FROM Vault14Bundle:Document d '
+                . 'WHERE d.folder_id IS NULL '
+                . 'AND d.user_id = :user '    
             )
             ->setParameter('user', $this->getCurrentUser()->getId());
                     
