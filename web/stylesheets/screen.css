@@ -110,24 +110,18 @@ body #container {
 body #container h1 {
   font-size: 2.4em;
 }
-/* line 36, ../sass/screen.scss */
-body #container .bottomline {
-  font-size: 0.7em;
-  margin-top: 1em;
-  border-top: #868686 1px solid;
-}
 
-/* line 44, ../sass/screen.scss */
+/* line 40, ../sass/screen.scss */
 .centered {
   text-align: center;
 }
 
-/* line 47, ../sass/screen.scss */
+/* line 43, ../sass/screen.scss */
 .big {
   margin: 2em;
 }
 
-/* line 50, ../sass/screen.scss */
+/* line 46, ../sass/screen.scss */
 h1.big {
   margin: 1.5em;
 }
