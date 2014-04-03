@@ -67,3 +67,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+hwi_oauth:
+    firewall_name: secured_area
+    resource_owners:
+        google:
+            type:                google
+            client_id:           888033703202-4tnqpjr7lvcp3l851v2vid7ll0jlkuh6.apps.googleusercontent.com
+            client_secret:       rIUaofQVEh9iXnuDlPl1A0GP
+            scope:               "email"

@@ -5,3 +5,8 @@ services:
 #    vault14.example:
 #        class: %vault14.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    hwi_oauth.user.provider.entity:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+    ib_user.oauth_user_provider:
+        class: smok\Vault14Bundle\Auth\OAuthProvider
+        arguments: [@session, @doctrine, @service_container]

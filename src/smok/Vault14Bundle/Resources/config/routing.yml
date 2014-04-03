@@ -1,3 +1,14 @@
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+google_login:
+    pattern: /login/check-google
+logout:
+    path:   /logout
+    
 vault14_homepage:
     pattern:  /
     defaults: { _controller: Vault14Bundle:Default:index }
