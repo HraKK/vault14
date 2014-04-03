@@ -43,7 +43,7 @@ class DefaultController extends Controller
             $em->persist($document);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('vault'));
+//            return $this->redirect($this->generateUrl('vault'));
         }
 
         return $this->render(
