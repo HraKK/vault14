@@ -3,6 +3,7 @@
 namespace smok\Vault14Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use smok\Vault14Bundle\Entity\Document;
 
 class DefaultController extends Controller
 {
@@ -11,7 +12,42 @@ class DefaultController extends Controller
         return $this->render('Vault14Bundle:Default:index.html.twig', array('name' => NULL));
     }
     
+    private function getDocumentUploadForm() {
+        $document = new Document();
+        $form = $this->createFormBuilder($document)
+            ->add('file')
+            ->getForm();
+        return array(
+            'document' => $document, 
+            'form' => $form
+        );
+    }
+    
     public function vaultAction() {
-        return $this->render('Vault14Bundle:Default:vault.html.twig');
+        extract($this->getDocumentUploadForm());
+        return $this->render('Vault14Bundle:Default:vault.html.twig', array(
+            'uploadform' => $form
+            
+        ));
+    }
+    
+    public function uploadAction(Request $request) {
+        extract($this->getDocumentUploadForm());
+        
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($document);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('vault'));
+        }
+
+        return $this->render(
+            'Vault14Bundle:Default:error.html.twig', 
+            array('error' => 'Invalid file')
+        );
     }
 }

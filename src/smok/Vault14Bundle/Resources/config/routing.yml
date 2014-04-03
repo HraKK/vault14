@@ -18,3 +18,8 @@ vault:
     defaults: 
         _controller: Vault14Bundle:Default:vault
         
+vault_upload:
+    pattern: /vault/upload
+    defaults:
+        _controller: Vault14Bundle:Default:upload
+        
