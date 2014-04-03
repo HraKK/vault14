@@ -1,0 +1,13 @@
+parameters:
+#    vault14.example.class: smok\Vault14Bundle\Example
+
+services:
+#    vault14.example:
+#        class: %vault14.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    my.facebook.user:
+        class: smok\Vault14Bundle\Security\User\Provider\FacebookProvider
+        arguments:
+            facebook: "@fos_facebook.api"
+            userManager: "@fos_user.user_manager"
+            validator: "@validator"

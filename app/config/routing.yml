@@ -1,0 +1,4 @@
+vault14:
+    resource: "@Vault14Bundle/Resources/config/routing.yml"
+    prefix:   /
+
