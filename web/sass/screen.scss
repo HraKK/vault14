@@ -33,7 +33,9 @@ body {
             font-size: 2.4em;
         }
         
-
+        div.vault {
+            font-size: 0.8em;
+        }
     }
     
 }
@@ -45,4 +47,7 @@ body {
 }
 h1.big {
     margin: 1.5em;
+}
+table.striped tr:even {
+    background-color: #f9ecec;
 }

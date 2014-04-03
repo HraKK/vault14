@@ -3,12 +3,27 @@
 {% block body %}
     <h1>You are inside!</h1>
     <!-- Responsive grid http://purecss.io/grids/ -->
-    <div class="pure-g-r">
+    <div class="pure-g-r vault">
         <div class="pure-u-2-5">
             {{ form(uploadform) }}
         </div>
         <div class="pure-u-3-5">
-            
+            <table class="pure-table pure-table-horizontal striped">
+                {% for folder in folders %}
+                    <tr>
+                        <td>folder</td>
+                        <td> {{ folder.name }} </td>
+                        
+                    </tr>
+                {% endfor %}
+                {% for document in documents %}
+                    <tr>
+                        <td>doc</td>
+                        <td> {{ document.name }} </td>
+                        
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 {% endblock %}
