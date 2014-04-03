@@ -36,8 +36,12 @@ body {
         div.vault {
             font-size: 0.8em;
             
-            label {
-                display: none;
+            form {
+                text-align: center;
+                
+                label {
+                    display: none;
+                }
             }
         }
     }
