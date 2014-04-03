@@ -15,6 +15,7 @@ class DefaultController extends Controller
     
     private function getDocumentUploadForm() {
         $document = new Document();
+        $document->name = 'untitled';
         $form = $this->createFormBuilder($document)
             ->add('file')
             ->add('upload', 'submit')
