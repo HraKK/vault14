@@ -17,6 +17,7 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder($document)
             ->add('file')
             ->add('upload', 'submit')
+            ->setAction($this->generateUrl('vault_upload'))
             ->getForm();
         return array(
             'document' => $document, 
@@ -43,7 +44,7 @@ class DefaultController extends Controller
             $em->persist($document);
             $em->flush();
 
-//            return $this->redirect($this->generateUrl('vault'));
+            return $this->redirect($this->generateUrl('vault'));
         }
 
         return $this->render(
