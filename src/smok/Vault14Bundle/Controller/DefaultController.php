@@ -44,19 +44,18 @@ class DefaultController extends Controller
             )
             ->setParameter('user', $this->getCurrentUser()->getId());
         
-        $documents = $this->getDoctrine()
-            ->getRepository('Vault14Bundle:Document')
-            ->createQueryBuilder('d')
-            ->where('d.folder_id IS NULL')
-            ->andWhere('d.user_id = :user')
-            ->setParameter('user', $this->getCurrentUser()->getId())
-            ->getQuery()
-            ->getResult();
-            
+        $documents_q = $em->createQuery(
+            'SELECT d'
+                . 'FROM Vault14Bundle:Document d'
+                . 'WHERE d.folder_id IS NULL'
+                . 'AND d.user_id = :user'    
+            )
+            ->setParameter('user', $this->getCurrentUser()->getId());
+                    
         return $this->render('Vault14Bundle:Default:vault.html.twig', array(
             'uploadform' => $form->createView(),
             'folders' => $folders_q->getResult(),
-            'documents' => $documents
+            'documents' => $documents_q->getResult()
         ));
     }
     
