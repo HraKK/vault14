@@ -4,6 +4,7 @@ namespace smok\Vault14Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use smok\Vault14Bundle\Entity\Document;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
