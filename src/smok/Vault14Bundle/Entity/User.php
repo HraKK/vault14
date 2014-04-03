@@ -77,6 +77,8 @@ class User extends OAuthUser implements EquatableInterface, \Serializable
         $this->roles = new ArrayCollection();
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
+        $this->documents = new ArrayCollection();
+        $this->folders = new ArrayCollection();
     }
     /**
      * @param string $googleId
@@ -215,4 +217,14 @@ class User extends OAuthUser implements EquatableInterface, \Serializable
         }
         return false;
     }
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Document", mappedBy="user")
+     */
+    protected $documents;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Folder", mappedBy="user")
+     */
+    protected $folders;
 }

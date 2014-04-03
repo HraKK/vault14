@@ -78,4 +78,17 @@ class Document {
     {
         return $this->file;
     }
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Folder", inversedBy="documents")
+     * @ORM\JoinColumn(name="folder_id", referencedColumnName="id")
+     */
+    protected $folder;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="documents")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+    
 }
