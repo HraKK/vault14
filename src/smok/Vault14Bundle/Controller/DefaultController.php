@@ -39,6 +39,7 @@ class DefaultController extends Controller
         $folders_q = $em->createQuery(
             'SELECT f '
                 . 'FROM Vault14Bundle:Folder f '
+                . 'LEFT JOIN f.parent_folder p '
                 . 'WHERE f.parent_folder_id IS NULL '
                 . 'AND f.user_id = :user '
             )
@@ -47,6 +48,7 @@ class DefaultController extends Controller
         $documents_q = $em->createQuery(
             'SELECT d '
                 . 'FROM Vault14Bundle:Document d '
+                . 'LEFT JOIN d.folder f '
                 . 'WHERE d.folder_id IS NULL '
                 . 'AND d.user_id = :user '    
             )
