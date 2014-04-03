@@ -124,5 +124,10 @@ body #container .bottomline {
 
 /* line 47, ../sass/screen.scss */
 .big {
-  margin: 1em;
+  margin: 2em;
+}
+
+/* line 50, ../sass/screen.scss */
+h1.big {
+  margin: 1.5em;
 }
