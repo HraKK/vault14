@@ -3,7 +3,7 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=cyrillic-ext,latin,cyrillic);
-@import url(http://yui.yahooapis.com/pure/0.4.2/pure-min.css);
+@import url(//cdnjs.cloudflare.com/ajax/libs/pure/0.4.2/pure-min.css);
 /* line 17, ../../../../lib/gems/1.8/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
