@@ -23,6 +23,16 @@ class Document {
     public $name;
     
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $mimetype;
+    
+    /**
+     * @ORM\Column(type="integer", length=4)
+     */
+    public $is_public;
+    
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $path;
@@ -101,6 +111,7 @@ class Document {
 
         $this->name = $this->getFile()->getClientOriginalName();
         $this->path = sha1($this->name.microtime());
+        $this->setMimetype($this->getFile()->getMimeType());
         
         $this->getFile()->move(
             $this->getUploadRootDir(),
@@ -212,5 +223,51 @@ class Document {
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set mimetype
+     *
+     * @param string $mimetype
+     * @return Document
+     */
+    public function setMimetype($mimetype)
+    {
+        $this->mimetype = $mimetype;
+
+        return $this;
+    }
+
+    /**
+     * Get mimetype
+     *
+     * @return string 
+     */
+    public function getMimetype()
+    {
+        return $this->mimetype;
+    }
+
+    /**
+     * Set is_public
+     *
+     * @param integer $isPublic
+     * @return Document
+     */
+    public function setIsPublic($isPublic)
+    {
+        $this->is_public = $isPublic;
+
+        return $this;
+    }
+
+    /**
+     * Get is_public
+     *
+     * @return integer 
+     */
+    public function getIsPublic()
+    {
+        return $this->is_public;
     }
 }

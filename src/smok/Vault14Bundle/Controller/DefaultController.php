@@ -21,6 +21,7 @@ class DefaultController extends Controller
         $document = new Document();
         $document->name = 'untitled';
         $document->setUser($this->getCurrentUser());
+        $document->setIsPublic(0);
         $form = $this->createFormBuilder($document)
             ->add('file')
             ->add('upload', 'submit')

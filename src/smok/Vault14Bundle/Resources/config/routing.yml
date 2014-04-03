@@ -22,4 +22,19 @@ vault_upload:
     pattern: /vault/upload
     defaults:
         _controller: Vault14Bundle:Default:upload
+
+vault_view:
+    pattern: /vault/view/{file_id}
+    defaults:
+        _controller: Vault14Bundle:Default:view
         
+vault_share:
+    pattern: /vault/share/{file_id}
+    defaults:
+        _controller: Vault14Bundle:Default:share
+
+vault_shared_view:
+    pattern: /shared/{file_id}
+    defaults:
+        _controller: Vault14Bundle:Default:sharedview
+

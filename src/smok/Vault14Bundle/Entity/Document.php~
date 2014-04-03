@@ -23,6 +23,16 @@ class Document {
     public $name;
     
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $mimetype;
+    
+    /**
+     * @ORM\Column(type="integer", length=4)
+     */
+    public $is_public;
+    
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $path;
@@ -111,4 +121,106 @@ class Document {
         $this->file = null;
     }
     
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Document
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Document
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set folder
+     *
+     * @param \smok\Vault14Bundle\Entity\Folder $folder
+     * @return Document
+     */
+    public function setFolder(\smok\Vault14Bundle\Entity\Folder $folder = null)
+    {
+        $this->folder = $folder;
+
+        return $this;
+    }
+
+    /**
+     * Get folder
+     *
+     * @return \smok\Vault14Bundle\Entity\Folder 
+     */
+    public function getFolder()
+    {
+        return $this->folder;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \smok\Vault14Bundle\Entity\User $user
+     * @return Document
+     */
+    public function setUser(\smok\Vault14Bundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \smok\Vault14Bundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
