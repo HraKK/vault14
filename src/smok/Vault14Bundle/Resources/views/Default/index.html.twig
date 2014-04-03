@@ -8,8 +8,9 @@
         Upload anything and share it with people.
     </p>
     <p class="centered big">
-        <a class="pure-button pure-button-primary" href="{{ path('vault') }}">
-            Login with Google
+        <a class="pure-button pure-button-primary" 
+           href="{{ path('hwi_oauth_service_redirect', {'service': 'google'}) }}">
+            Log in with Google
         </a>
     </p>
 {% endblock %}

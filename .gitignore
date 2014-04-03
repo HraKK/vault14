@@ -1,9 +1,10 @@
 /web/bundles/
 /web/uploads/*
-/web/.sass-cache/
+/web/.sass-cache/*
 /app/bootstrap.php.cache
 /app/cache/*
 /app/config/parameters.yml
+/app/config/config.yml
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
