@@ -16,6 +16,7 @@ class DefaultController extends Controller
         $document = new Document();
         $form = $this->createFormBuilder($document)
             ->add('file')
+            ->add('upload', 'submit')
             ->getForm();
         return array(
             'document' => $document, 
