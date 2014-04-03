@@ -35,14 +35,15 @@ class DefaultController extends Controller
     public function vaultAction() {
         extract($this->getDocumentUploadForm());
         
-        $folders = $this->getDoctrine()
-            ->getRepository('Vault14Bundle:Folder')
-            ->createQueryBuilder('f')
-            ->where('f.parent_folder_id IS NULL')
-            ->andWhere('f.user_id = :user')
-            ->setParameter('user', $this->getCurrentUser()->getId())
-            ->getQuery()
-            ->getResult();
+        $em = $this->getDoctrine()->getManager();
+        $folders_q = $em->createQuery(
+            'SELECT f'
+                . 'FROM Vault14Bundle:Folder f'
+                . 'WHERE f.parent_folder_id IS NULL'
+                . 'AND f.user_id = :user'
+            )
+            ->setParameter('user', $this->getCurrentUser()->getId());
+        
         $documents = $this->getDoctrine()
             ->getRepository('Vault14Bundle:Document')
             ->createQueryBuilder('d')
@@ -54,7 +55,7 @@ class DefaultController extends Controller
             
         return $this->render('Vault14Bundle:Default:vault.html.twig', array(
             'uploadform' => $form->createView(),
-            'folders' => $folders,
+            'folders' => $folders_q->getResult(),
             'documents' => $documents
         ));
     }
