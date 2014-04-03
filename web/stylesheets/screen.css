@@ -139,17 +139,23 @@ h1.big {
 }
 
 /* line 60, ../sass/screen.scss */
+a.ninja {
+  text-decoration: none;
+  color: black;
+}
+
+/* line 65, ../sass/screen.scss */
 table.striped tr:even {
   background-color: #f9ecec;
 }
 
-/* line 63, ../sass/screen.scss */
+/* line 68, ../sass/screen.scss */
 table.doclist {
   width: 100%;
 }
 
 /* FORM */
-/* line 68, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
 #fileDrop {
   background: #fff;
   width: 100%;
@@ -159,7 +165,7 @@ table.doclist {
   border: 2px dashed #444;
 }
 
-/* line 76, ../sass/screen.scss */
+/* line 81, ../sass/screen.scss */
 #form_file {
   visibility: hidden;
   height: 0px;
@@ -167,7 +173,7 @@ table.doclist {
 }
 
 /* Pure buttons */
-/* line 83, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 .button-secondary {
   background: #42b8dd;
   /* this is a light blue */
