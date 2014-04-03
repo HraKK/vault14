@@ -70,6 +70,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /*
+ * http://purecss.io/
+ */
+/*
   FLUIDITY v0.1.0
   @mrmrs - http://mrmrs.cc
   MIT
@@ -90,36 +93,36 @@ img, canvas, iframe, video, svg {
   overflow-y: scroll;
 }
 
-/* line 17, ../sass/screen.scss */
+/* line 21, ../sass/screen.scss */
 body {
   font-family: 'Open Sans Condensed', sans-serif;
   font-weight: 300;
   font-size: 1.5em;
 }
-/* line 22, ../sass/screen.scss */
+/* line 26, ../sass/screen.scss */
 body #container {
   min-width: 640px;
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 28, ../sass/screen.scss */
+/* line 32, ../sass/screen.scss */
 body #container h1 {
   font-size: 2.4em;
 }
-/* line 32, ../sass/screen.scss */
+/* line 36, ../sass/screen.scss */
 body #container .bottomline {
   font-size: 0.7em;
   margin-top: 1em;
   border-top: #868686 1px solid;
 }
 
-/* line 40, ../sass/screen.scss */
+/* line 44, ../sass/screen.scss */
 .centered {
   text-align: center;
 }
 
-/* line 43, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 .big {
   margin: 1em;
 }
