@@ -26,7 +26,7 @@ class DefaultController extends Controller
     public function vaultAction() {
         extract($this->getDocumentUploadForm());
         return $this->render('Vault14Bundle:Default:vault.html.twig', array(
-            'uploadform' => $form
+            'uploadform' => $form->createView()
             
         ));
     }
