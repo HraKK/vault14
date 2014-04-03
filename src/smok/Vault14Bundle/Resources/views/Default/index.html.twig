@@ -1,5 +1,15 @@
 {% extends 'Vault14Bundle:Default:base.html.twig' %}
 
 {% block body %}
-    <h1>Hello!</h1>
+    <h1 class="centered big">Hello files!</h1>
+    <p class="centered big">
+        Vault14
+        is a simple web-based file storage. 
+        Upload anything and share it with people.
+    </p>
+    <p class="centered big">
+        <a class="pure-button pure-button-primary" href="{{ path('vault') }}">
+            Login with Google
+        </a>
+    </p>
 {% endblock %}

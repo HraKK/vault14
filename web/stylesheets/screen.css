@@ -3,6 +3,7 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=cyrillic-ext,latin,cyrillic);
+@import url(http://yui.yahooapis.com/pure/0.4.2/pure-min.css);
 /* line 17, ../../../../lib/gems/1.8/gems/compass-0.12.4/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -89,20 +90,36 @@ img, canvas, iframe, video, svg {
   overflow-y: scroll;
 }
 
-/* line 16, ../sass/screen.scss */
+/* line 17, ../sass/screen.scss */
 body {
   font-family: 'Open Sans Condensed', sans-serif;
   font-weight: 300;
   font-size: 1.5em;
 }
-/* line 21, ../sass/screen.scss */
+/* line 22, ../sass/screen.scss */
 body #container {
   min-width: 640px;
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 27, ../sass/screen.scss */
+/* line 28, ../sass/screen.scss */
 body #container h1 {
   font-size: 2.4em;
+}
+/* line 32, ../sass/screen.scss */
+body #container .bottomline {
+  font-size: 0.7em;
+  margin-top: 1em;
+  border-top: #868686 1px solid;
+}
+
+/* line 40, ../sass/screen.scss */
+.centered {
+  text-align: center;
+}
+
+/* line 43, ../sass/screen.scss */
+.big {
+  margin: 1em;
 }

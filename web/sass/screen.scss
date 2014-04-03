@@ -5,6 +5,7 @@
 
 @import "compass/reset";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700&subset=cyrillic-ext,latin,cyrillic);
+@import url(http://yui.yahooapis.com/pure/0.4.2/pure-min.css);
 
 /*
   FLUIDITY v0.1.0
@@ -28,7 +29,17 @@ body {
             font-size: 2.4em;
         }
         
-
+        .bottomline {
+            font-size: 0.7em;
+            margin-top: 1em;
+            border-top: #868686 1px solid;
+        }
     }
     
+}
+.centered {
+    text-align: center;
+}
+.big {
+    margin: 1em;
 }
