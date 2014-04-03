@@ -14,7 +14,10 @@ class DefaultController extends Controller
     }
     
     private function getCurrentUser() {
-        return $this->get('security.context')->getToken()->getUser();
+        if (!isset($this->current_user)) 
+            $this->current_user = 
+                $this->get('security.context')->getToken()->getUser();
+        return $this->current_user;
     }
 
     private function getDocumentUploadForm() {
