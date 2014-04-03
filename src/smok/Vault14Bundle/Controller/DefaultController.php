@@ -42,6 +42,8 @@ class DefaultController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            
+            $document->upload();
 
             $em->persist($document);
             $em->flush();
