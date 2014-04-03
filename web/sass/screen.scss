@@ -35,6 +35,10 @@ body {
         
         div.vault {
             font-size: 0.8em;
+            
+            label {
+                display: none;
+            }
         }
     }
     
@@ -48,8 +52,12 @@ body {
 h1.big {
     margin: 1.5em;
 }
+
 table.striped tr:even {
     background-color: #f9ecec;
+}
+table.doclist {
+    width: 100%;
 }
 
 /* FORM */
@@ -61,9 +69,13 @@ table.striped tr:even {
   border-radius:18px;
   border:2px dashed #444; 
 }
-
 #form_file{
   visibility: hidden;
   height:0px;
   width: 0px;
+}
+
+/* Pure buttons */
+.button-secondary {
+    background: rgb(66, 184, 221); /* this is a light blue */
 }

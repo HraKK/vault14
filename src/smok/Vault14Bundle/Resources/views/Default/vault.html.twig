@@ -13,11 +13,12 @@
                 $('#fileDrop').click(function(e){
                     $('#form_file').click();
                 });
+                $('#form_upload').addClass('button-secondary pure-button');
             });
         </script>
         <div class="pure-u-1-5"></div>
         <div class="pure-u-3-5">
-            <table class="pure-table pure-table-horizontal striped">
+            <table class="pure-table pure-table-horizontal striped doclist">
                 {% for folder in folders %}
                     <tr>
                         <td>folder</td>

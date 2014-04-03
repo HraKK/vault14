@@ -114,29 +114,38 @@ body #container h1 {
 body #container div.vault {
   font-size: 0.8em;
 }
+/* line 39, ../sass/screen.scss */
+body #container div.vault label {
+  display: none;
+}
 
-/* line 42, ../sass/screen.scss */
+/* line 46, ../sass/screen.scss */
 .centered {
   text-align: center;
 }
 
-/* line 45, ../sass/screen.scss */
+/* line 49, ../sass/screen.scss */
 .big {
   margin: 2em;
 }
 
-/* line 48, ../sass/screen.scss */
+/* line 52, ../sass/screen.scss */
 h1.big {
   margin: 1.5em;
 }
 
-/* line 51, ../sass/screen.scss */
+/* line 56, ../sass/screen.scss */
 table.striped tr:even {
   background-color: #f9ecec;
 }
 
+/* line 59, ../sass/screen.scss */
+table.doclist {
+  width: 100%;
+}
+
 /* FORM */
-/* line 56, ../sass/screen.scss */
+/* line 64, ../sass/screen.scss */
 #fileDrop {
   background: #fff;
   width: 100%;
@@ -146,9 +155,16 @@ table.striped tr:even {
   border: 2px dashed #444;
 }
 
-/* line 65, ../sass/screen.scss */
+/* line 72, ../sass/screen.scss */
 #form_file {
   visibility: hidden;
   height: 0px;
   width: 0px;
+}
+
+/* Pure buttons */
+/* line 79, ../sass/screen.scss */
+.button-secondary {
+  background: #42b8dd;
+  /* this is a light blue */
 }
