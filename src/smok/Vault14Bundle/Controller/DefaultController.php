@@ -157,12 +157,9 @@ class DefaultController extends Controller
         $document_q = $em->createQuery(
             'SELECT d '
                 . 'FROM Vault14Bundle:Document d '
-                . 'LEFT JOIN d.user u '
                 . 'WHERE d.id = :id '
-                . 'AND u.id = :user '    
             )
-            ->setParameter('id', (int)$file_id)
-            ->setParameter('user', $this->getCurrentUser()->getId());
+            ->setParameter('id', (int)$file_id);
         
         $document = $document_q->getSingleResult();
         
