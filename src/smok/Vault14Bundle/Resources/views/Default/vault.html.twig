@@ -22,7 +22,7 @@
             </script>
             <p>&nbsp;</p>
             {{ form_start(folder_create_form, {'attr': {'class': 'pure-form pure-form-stacked'}}) }}
-                {{ form_widget(folder_create_form.name) }}
+                {{ form_widget(folder_create_form.name, {'attr': {'placeholder': 'New folder'}}) }}
                 {{ form_widget(folder_create_form.Create, {'attr': {'class': 'button-secondary pure-button'}}) }}
             {{ form_end(folder_create_form) }}
         </div>
