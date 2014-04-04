@@ -4,6 +4,7 @@ namespace smok\Vault14Bundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use smok\Vault14Bundle\Entity\Document;
+use smok\Vault14Bundle\Entity\Folder;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -33,9 +34,21 @@ class DefaultController extends Controller
         );
     }
     
+    private function getFolderCreateForm() {
+        $folder = new Folder();
+        $folder->setUser($this->getCurrentUser());
+        $folder_create_form = $this->createFormBuilder($folder)
+            ->add('name')
+            ->add('Create', 'submit')
+            ->setAction($this->generateUrl('vault_createfolder'))
+            ->getForm();
+        return array(
+            'folder' => $folder,
+            'folder_create_form' => $folder_create_form
+        );
+    }
+    
     public function vaultAction() {
-        extract($this->getDocumentUploadForm());
-        
         $em = $this->getDoctrine()->getManager();
         $folders_q = $em->createQuery(
             'SELECT f '
@@ -56,11 +69,15 @@ class DefaultController extends Controller
                 . 'AND u.id = :user '
             )
             ->setParameter('user', $this->getCurrentUser()->getId());
+
+        extract($this->getDocumentUploadForm());
+        extract($this->getFolderCreateForm());
                     
         return $this->render('Vault14Bundle:Default:vault.html.twig', array(
             'uploadform' => $form->createView(),
             'folders' => $folders_q->getResult(),
-            'documents' => $documents_q->getResult()
+            'documents' => $documents_q->getResult(),
+            'folder_create_form' => $folder_create_form->createView()
         ));
     }
     
@@ -84,5 +101,31 @@ class DefaultController extends Controller
             'Vault14Bundle:Default:error.html.twig', 
             array('error' => 'Invalid file')
         );
+    }
+    
+    public function createformAction(Request $request) {
+        extract($this->getFolderCreateForm());
+        
+        $folder_create_form->handleRequest($request);
+        
+        if ($folder_create_form->isValid()) {
+            $em = $this->getDoctrine->getManager();
+            
+            $em->persist($folder);
+            $em->flush();
+            
+            return $this->redirect(
+                $this->generateUrl(
+                    'vault', 
+                    array('folder'=>$folder->getId())
+                )
+            );
+        }
+        
+        return $this->render(
+            'Vault14Bundle:Default:error.html.twig', 
+            array('error' => 'Can\'t create your folder')
+        );
+
     }
 }

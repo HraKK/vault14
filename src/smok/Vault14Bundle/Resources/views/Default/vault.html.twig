@@ -12,15 +12,17 @@
         <div class="pure-u-4-24">
             <button id="fileDrop">Select file</button>
             {{ form(uploadform) }}
-        </div>
-        <script>
-            $(document).ready(function(){
-                $('#fileDrop').click(function(e){
-                    $('#form_file').click();
+            <script>
+                $(document).ready(function(){
+                    $('#fileDrop').click(function(e){
+                        $('#form_file').click();
+                    });
+                    $('#form_upload').addClass('button-secondary pure-button');
                 });
-                $('#form_upload').addClass('button-secondary pure-button');
-            });
-        </script>
+            </script>
+            
+            {{ form(folder_create_form) }}
+        </div>
         <div class="pure-u-1-24"></div>
         <div class="pure-u-17-24">
             <table class="pure-table pure-table-horizontal striped doclist">

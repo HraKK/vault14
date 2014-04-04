@@ -28,6 +28,11 @@ vault_view:
     defaults:
         _controller: Vault14Bundle:Default:view
         
+vault_createfolder:
+    pattern: /vault/createfolder
+    defaults:
+        _controller: Vault14Bundle:Default:createform
+        
 vault_share:
     pattern: /vault/share/{file_id}
     defaults:
