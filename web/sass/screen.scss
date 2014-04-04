@@ -42,6 +42,10 @@ body {
                 label {
                     display: none;
                 }
+                
+                input {
+                    max-width: 100%;
+                }
             }
         }
     }

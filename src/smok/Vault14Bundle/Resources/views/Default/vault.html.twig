@@ -20,8 +20,11 @@
                     $('#form_upload').addClass('button-secondary pure-button');
                 });
             </script>
-            <p> </p>
-            {{ form(folder_create_form, {'attr': {'class': 'pure-form pure-form-stacked'}}) }}
+            <p>&nbsp;</p>
+            {{ form_start(folder_create_form, {'attr': {'class': 'pure-form pure-form-stacked'}}) }}
+                {{ form_widget(folder_create_form.name) }}
+                {{ form_widget(folder_create_form.Create, {'attr': {'class': 'button-secondary pure-button'}}) }}
+            {{ form_end(fodler_create_form) }}
         </div>
         <div class="pure-u-1-24"></div>
         <div class="pure-u-17-24">
