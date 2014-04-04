@@ -61,7 +61,7 @@ class DefaultController extends Controller
             $current_folder_q = $em->createQuery(
                 'SELECT f '
                     . 'FROM Vault14Bundle:Folder f '
-                    . 'LEFT JOIN f.user u'
+                    . 'LEFT JOIN f.user u '
                     . 'WHERE f.id = :id '
                     . 'AND u.id = :user '
                 )
