@@ -28,6 +28,9 @@ vault_view:
     defaults:
         _controller: Vault14Bundle:Default:view
         
+download:
+    pattern: /download/{file_id}/{file_name}
+        
 vault_createfolder:
     pattern: /vault/createfolder
     defaults:

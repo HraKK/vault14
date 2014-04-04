@@ -1,0 +1,22 @@
+{% extends 'Vault14Bundle:Default:base.html.twig' %}
+
+{% block body %}
+<div class="pure-g-r">
+    <div class="pure-u-1-24"></div>
+    <div class="pure-u-22-24">
+        <p class="big">
+            {{ document.name }} 
+            <a href="{{ path('download', {'file_id': document.id, 'file_name': document.name}) }}">
+                Download
+            </a>
+        </p>
+        {% if document.mimetype matches ^image.* %}
+        <p class="centered"> 
+            <img src="{{ path('download', {'file_id': document.id, 'file_name': document.name}) }}" />
+        </p>
+        {% endif %}
+        <p><a href="{{ path('vault') }}">Back to the Vault</a></p>
+    </div>
+    <div class="pure-u-1-24"></div>    
+</div>
+{% endblock %}

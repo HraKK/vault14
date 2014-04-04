@@ -129,6 +129,28 @@ class DefaultController extends Controller
         ));
     }
     
+    public function viewAction($file_id) {
+        $em = $this->getDoctrine()->getManager();
+        $document_q = $em->createQuery(
+            'SELECT d '
+                . 'FROM Vault14Bundle:Document d '
+                . 'LEFT JOIN d.user u '
+                . 'WHERE d.id = :id '
+                . 'AND u.id = :user '    
+            )
+            ->setParameter('id', (int)$file_id)
+            ->setParameter('user', $this->getCurrentUser()->getId());
+        
+        $document = $document_q->getSingleResult();
+        
+        if (!$document)
+            throw new NotFoundHttpException('Document not found');
+        
+        return $this->render('Vault14Bundle:Default:view.html.twig', array(
+            'document' => $document
+        ));
+    }
+    
     public function uploadAction(Request $request) {
         extract($this->getDocumentUploadForm());
         
