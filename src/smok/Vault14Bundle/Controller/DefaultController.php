@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use smok\Vault14Bundle\Entity\Document;
 use smok\Vault14Bundle\Entity\Folder;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -18,11 +19,13 @@ class DefaultController extends Controller
         return $this->get('security.context')->getToken()->getUser();
     }
 
-    private function getDocumentUploadForm() {
+    private function getDocumentUploadForm($folder = NULL) {
         $document = new Document();
         $document->name = 'untitled';
         $document->setUser($this->getCurrentUser());
         $document->setIsPublic(0);
+        if (!is_null($folder)) 
+            $document->setFolder ($folder);
         $form = $this->createFormBuilder($document)
             ->add('file')
             ->add('upload', 'submit')
@@ -34,9 +37,11 @@ class DefaultController extends Controller
         );
     }
     
-    private function getFolderCreateForm() {
+    private function getFolderCreateForm($parent_folder = NULL) {
         $folder = new Folder();
         $folder->setUser($this->getCurrentUser());
+        if (!is_null($parent_folder)) 
+            $folder->setParentFolder($parent_folder);
         $folder_create_form = $this->createFormBuilder($folder)
             ->add('name')
             ->add('Create', 'submit')
@@ -48,27 +53,68 @@ class DefaultController extends Controller
         );
     }
     
-    public function vaultAction() {
+    public function vaultAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
-        $folders_q = $em->createQuery(
-            'SELECT f '
-                . 'FROM Vault14Bundle:Folder f '
-                . 'LEFT JOIN f.parent_folder p '
-                . 'LEFT JOIN f.user u '
-                . 'WHERE p.id IS NULL '
-                . 'AND u.id = :user '
-            )
-            ->setParameter('user', $this->getCurrentUser()->getId());
         
-        $documents_q = $em->createQuery(
-            'SELECT d '
-                . 'FROM Vault14Bundle:Document d '
-                . 'LEFT JOIN d.folder f '
-                . 'LEFT JOIN d.user u '
-                . 'WHERE f.id IS NULL '
-                . 'AND u.id = :user '
-            )
-            ->setParameter('user', $this->getCurrentUser()->getId());
+        $current_folder = FALSE;
+        if ($request->get('folder', FALSE)) {
+            $current_folder_q = $em->createQuery(
+                'SELECT f '
+                    . 'FROM Vault14Bundle:Folder f '
+                    . 'LEFT JOIN f.user u'
+                    . 'WHERE f.id = :id '
+                    . 'AND u.id = :user '
+                )
+                ->setParameter('id', (int)$request->get('folder', 0))
+                ->setParameter('user', $this->getCurrentUser()->getId());
+            
+            $current_folder = $current_folder_q->getSingleResult();
+            if (!$current_folder)
+                throw new NotFoundHttpException('Folder not found');
+            
+            $folders_q = $em->createQuery(
+                'SELECT f '
+                    . 'FROM Vault14Bundle:Folder f '
+                    . 'LEFT JOIN f.parent_folder p '
+                    . 'LEFT JOIN f.user u '
+                    . 'WHERE p.id = :parent '
+                    . 'AND u.id = :user '
+                )
+                ->setParameter('user', $this->getCurrentUser()->getId())
+                ->setParameter('parent', $current_folder->getId());
+
+            $documents_q = $em->createQuery(
+                'SELECT d '
+                    . 'FROM Vault14Bundle:Document d '
+                    . 'LEFT JOIN d.folder f '
+                    . 'LEFT JOIN d.user u '
+                    . 'WHERE f.id = :parent '
+                    . 'AND u.id = :user '
+                )
+                ->setParameter('user', $this->getCurrentUser()->getId())
+                ->setParameter('parent', $current_folder->getId());
+            
+        } else {
+            $folders_q = $em->createQuery(
+                'SELECT f '
+                    . 'FROM Vault14Bundle:Folder f '
+                    . 'LEFT JOIN f.parent_folder p '
+                    . 'LEFT JOIN f.user u '
+                    . 'WHERE p.id IS NULL '
+                    . 'AND u.id = :user '
+                )
+                ->setParameter('user', $this->getCurrentUser()->getId());
+
+            $documents_q = $em->createQuery(
+                'SELECT d '
+                    . 'FROM Vault14Bundle:Document d '
+                    . 'LEFT JOIN d.folder f '
+                    . 'LEFT JOIN d.user u '
+                    . 'WHERE f.id IS NULL '
+                    . 'AND u.id = :user '
+                )
+                ->setParameter('user', $this->getCurrentUser()->getId());
+        }
 
         extract($this->getDocumentUploadForm());
         extract($this->getFolderCreateForm());
@@ -77,7 +123,9 @@ class DefaultController extends Controller
             'uploadform' => $form->createView(),
             'folders' => $folders_q->getResult(),
             'documents' => $documents_q->getResult(),
-            'folder_create_form' => $folder_create_form->createView()
+            'folder_create_form' => $folder_create_form->createView(),
+            'show_root_folder_link' => ($current_folder && !$current_folder->getParentFolder()),
+            'parent_folder_id' => $current_folder->getParentFolder()->getId()
         ));
     }
     

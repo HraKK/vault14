@@ -29,17 +29,41 @@
         <div class="pure-u-1-24"></div>
         <div class="pure-u-17-24">
             <table class="pure-table pure-table-horizontal striped doclist">
+                {% if (show_root_folder_link) %}
+                    <tr>
+                        <td>folder</td>
+                        <td>
+                            <a href='{{ path('vault') }}'>..</a>
+                        </td>
+                    </tr>
+                {% endif %}
+                {% if (parent_folder_id) %}
+                    <tr>
+                        <td>folder</td>
+                        <td>
+                            <a href='{{ path('vault', {'folder': parent_folder_id}) }}'>..</a>
+                        </td>
+                    </tr>
+                {% endif %}
                 {% for folder in folders %}
                     <tr>
                         <td>folder</td>
-                        <td> {{ folder.name }} </td>
+                        <td> 
+                            <a href='{{ path('vault', {'folder': folder.id }) }}'>
+                                {{ folder.name }} 
+                            </a>
+                        </td>
                         
                     </tr>
                 {% endfor %}
                 {% for document in documents %}
                     <tr>
                         <td>doc</td>
-                        <td> {{ document.name }} </td>
+                        <td> 
+                            <a href='{{ path('vault_view', {'file_id': document.id})}}'>
+                                {{ document.name }} 
+                            </a>
+                        </td>
                         
                     </tr>
                 {% endfor %}
