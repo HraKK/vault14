@@ -171,7 +171,7 @@ class DefaultController extends Controller
             Response::HTTP_OK,
             array(
                 'content-type' => $document->getMimetype(),
-                'X-Accel-Redirect' => $document->getPath()
+                'X-Accel-Redirect' => '/documents/'.$document->getPath()
             )
         );
         $response->send();
