@@ -10,7 +10,7 @@
                 Download
             </a>
         </p>
-        {% if document.mimetype matches '^image.*' %}
+        {% if document.mimetype matches '{^image.*}' %}
         <p class="centered"> 
             <img src="{{ path('download', {'file_id': document.id, 'file_name': document.name}) }}" />
         </p>
