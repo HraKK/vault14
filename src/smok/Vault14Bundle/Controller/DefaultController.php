@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use smok\Vault14Bundle\Entity\Document;
 use smok\Vault14Bundle\Entity\Folder;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
@@ -149,6 +150,34 @@ class DefaultController extends Controller
         return $this->render('Vault14Bundle:Default:view.html.twig', array(
             'document' => $document
         ));
+    }
+    
+    public function downloadAction($file_id) {
+        $em = $this->getDoctrine()->getManager();
+        $document_q = $em->createQuery(
+            'SELECT d '
+                . 'FROM Vault14Bundle:Document d '
+                . 'LEFT JOIN d.user u '
+                . 'WHERE d.id = :id '
+                . 'AND u.id = :user '    
+            )
+            ->setParameter('id', (int)$file_id)
+            ->setParameter('user', $this->getCurrentUser()->getId());
+        
+        $document = $document_q->getSingleResult();
+        
+        if (!$document)
+            throw new NotFoundHttpException('File not found');
+        
+        $response = new Response(
+            NULL,
+            Response::HTTP_OK,
+            array(
+                'content-type' => $document->getMimetype(),
+                'X-Accel-Redirect' => $document->getPath()
+            )
+        );
+        $response->send();
     }
     
     public function uploadAction(Request $request) {

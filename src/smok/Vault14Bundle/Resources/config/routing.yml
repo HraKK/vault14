@@ -30,6 +30,8 @@ vault_view:
         
 download:
     pattern: /download/{file_id}/{file_name}
+    defaults:
+        _controller: Vault14Bundle:Default:download
         
 vault_createfolder:
     pattern: /vault/createfolder
