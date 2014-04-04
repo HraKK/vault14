@@ -125,7 +125,7 @@ class DefaultController extends Controller
             'documents' => $documents_q->getResult(),
             'folder_create_form' => $folder_create_form->createView(),
             'show_root_folder_link' => ($current_folder && !$current_folder->getParentFolder()),
-            'parent_folder_id' => $current_folder->getParentFolder()->getId()
+            'parent_folder_id' => ($current_folder->getParentFolder()? $current_folder->getParentFolder()->getId() : NULL)
         ));
     }
     
