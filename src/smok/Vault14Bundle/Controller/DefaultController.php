@@ -109,7 +109,7 @@ class DefaultController extends Controller
         $folder_create_form->handleRequest($request);
         
         if ($folder_create_form->isValid()) {
-            $em = $this->getDoctrine->getManager();
+            $em = $this->getDoctrine()->getManager();
             
             $em->persist($folder);
             $em->flush();
